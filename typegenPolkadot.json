@@ -1,0 +1,6 @@
+{
+  "outDir": "./src/types/polkadot",
+  "specVersions": "https://polkadot.archive.subsquid.io/graphql",
+  "typesBundle": "polkadot",
+  "events": ["Crowdloan.Contributed"]
+}
