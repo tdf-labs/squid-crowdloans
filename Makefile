@@ -19,9 +19,9 @@ codegen:
 
 
 typegen-kusama:
-	@npx squid-substrate-typegen typegenKusama.json
+	@npx --yes squid-substrate-typegen typegenKusama.json
 typegen-polkadot:
-	@npx squid-substrate-typegen typegenPolkadot.json
+	@npx --yes squid-substrate-typegen typegenPolkadot.json
 
 typegen: typegen-kusama typegen-polkadot
 
@@ -32,6 +32,6 @@ down:
 	@docker-compose down
 
 deploy: codegen typegen-$(network)
-	echo @API_DEBUG=true npx sqd squid update crowdloans-$(network)@$(version) --source github.com/litentry/squid-crowdloans.git#main -v -e NETWORK=$(network)
+	@API_DEBUG=true npx sqd squid update crowdloans-$(network)@$(version) --source github.com/tdf-labs/squid-crowdloans.git#main -v -e NETWORK=$(network)
 
 .PHONY: build serve process migrate codegen typegen up down

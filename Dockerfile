@@ -10,6 +10,12 @@ ADD package-lock.json .
 RUN npm ci
 ADD tsconfig.json .
 ADD src src
+ADD schema.graphql .
+ADD Makefile .
+RUN make codegen
+ADD typegenKusama.json .
+ADD typegenPolkadot.json .
+RUN make typegen
 RUN npm run build
 
 FROM node-with-gyp AS deps
