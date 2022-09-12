@@ -1,17 +1,13 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor';
+import { Store } from "@subsquid/typeorm-store";
+import {
+  SubstrateCrowdloanContribution, SubstrateCrowdloanContributionAccount, SubstrateNetwork
+} from '../model';
 import {
   decodeAddress,
-  encodeAddress,
-  getRegistry,
-  getOrCreate,
+  encodeAddress, getOrCreate, getRegistry
 } from '../utils';
-import {
-  SubstrateCrowdloanContributionAccount,
-  SubstrateCrowdloanContribution,
-  SubstrateNetwork,
-} from '../model';
 import { getContributedEvent } from './typeGetters/getContributedEvent';
-import {Store} from "@subsquid/typeorm-store"
 
 export default (network: SubstrateNetwork, tokenIndex: number) =>
   async (ctx: EventHandlerContext<Store>) => {
@@ -43,7 +39,7 @@ export default (network: SubstrateNetwork, tokenIndex: number) =>
     await ctx.store.save(account);
 
     const contribution = new SubstrateCrowdloanContribution({
-      id: `${network}:${blockNumber.toString()}:${ctx.event.indexInBlock}`,
+      id: `${blockNumber.toString()}:${ctx.event.indexInBlock}`,
       network,
       blockNumber,
       date,

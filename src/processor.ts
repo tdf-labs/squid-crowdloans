@@ -4,7 +4,7 @@ import { TypeormDatabase } from '@subsquid/typeorm-store';
 import crowdloanContributedHandler from './handlers/crowdloan.contributed.event';
 import { SubstrateNetwork } from './model';
 
-const supportedNetworks = ['kusama', 'polkadot', 'khala'];
+const supportedNetworks = ['kusama', 'polkadot'];
 const network: SubstrateNetwork = process.env.NETWORK as SubstrateNetwork;
 
 if (!supportedNetworks.includes(network)) {
